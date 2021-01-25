@@ -1,3 +1,13 @@
 header.header
-    div.header__icon
+    .header__icon
+        img(src="/static/icon/hamburger.svg")
         img(src="/static/icon/Myoutube.svg")
+    .header__icon
+        form(action=routes.search, method="get")
+            input(type="text",placeholder="검색" name="term")
+    .header__icon
+        ul 
+            li
+                a(href=routes.join) 가입하기
+            li
+                a(href=routes.login) 로그인
