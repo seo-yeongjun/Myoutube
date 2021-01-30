@@ -1,3 +1,5 @@
+import { videoDetail } from "./controller/videoController";
+
 //global
 const Home = "/";
 const Join = "/join";
@@ -6,17 +8,14 @@ const Logout = "/logout";
 const Search = "/search";
 
 //users
-const User = "/user";
 const Users = "/users";
-const User_Detail = "/:id";
 const Edit_Profile = "/edit-profile";
 const Change_Password = "/change-password";
-
+const User_Detail = "/:id";
 //videos
-const Video = "/video";
 const Videos = "/videos";
-const Upload = "/upload";
 const Video_Detail = "/:id";
+const Upload = "/upload";
 const Edit_Video = "/:id/edit";
 const Delete_Video = "/:id/delete";
 
@@ -26,15 +25,25 @@ const routes = {
   login: Login,
   logout: Logout,
   search: Search,
-  user: User,
   users: Users,
-  userDetail: User_Detail,
+  userDetail: (id) => {
+    if (id) {
+      return `/users/${id}`;
+    } else {
+      return User_Detail;
+    }
+  },
   editProfile: Edit_Profile,
   changePassword: Change_Password,
-  video: Video,
   videos: Videos,
   upload: Upload,
-  videoDetail: Video_Detail,
+  videoDetail: (id) => {
+    if (id) {
+      return `/videos/${id}`;
+    } else {
+      return Video_Detail;
+    }
+  },
   editVideo: Edit_Video,
   deleteVideo: Delete_Video,
 };

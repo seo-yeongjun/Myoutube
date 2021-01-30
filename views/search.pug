@@ -1,5 +1,16 @@
 extends layouts/main.pug
+include mixins/videoB.pug
 
 block content
     .search__header
         h3 #{searchingWhat} 검색 결과
+    .search__videos
+        each video in videos
+            +videoB({
+                id:video.id,
+                title:video.title,
+                  name:video.creator.name,
+                views:video.views,
+                videoProfileImg:video.videoProfileImg,
+                videoFile:video.videoFile
+                })

@@ -4,4 +4,11 @@ cloning youtube
 
 ## Pages:
 
-- [] Home
+- Home
+- Join
+- Login
+- search
+- user detail
+- upload
+- video detail
+- edit video

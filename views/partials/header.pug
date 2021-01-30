@@ -6,8 +6,16 @@ header.header
         form(action=routes.search, method="get")
             input(type="text",placeholder="검색" name="term")
     .header__icon
-        ul 
+    ul
+        if !user.isAuthenticated
             li
                 a(href=routes.join) 가입하기
             li
                 a(href=routes.login) 로그인
+        else
+            li
+                a(href=`/videos${routes.upload}`) 영상업로드
+            li
+                a(href=routes.userDetail(user.id)) 프로필
+            li
+                a(href=routes.logout) 로그아웃

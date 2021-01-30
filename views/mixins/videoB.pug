@@ -1,0 +1,11 @@
+mixin videoB(video={})
+    
+    .videoB
+        a(href=routes.videoDetail(video.id))
+            video.videoB__thumbnail(src=video.videoFile, controls=true)
+            .videoB__DES
+                img.videoB__profileImg(src=video.videoProfileImg)
+                .videoB__JJJ
+                    h3.videoB__title=video.title
+                    h4.videoB__profile=video.name
+                    h4.videoB__views=video.views
