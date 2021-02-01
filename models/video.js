@@ -5,7 +5,7 @@ const videoSchema = new mongoose.Schema({
     type: String,
     required: "File URL is required",
   },
-  creater
+  name: String,
   title: {
     type: String,
     requierd: "Title is required",
@@ -27,6 +27,12 @@ const videoSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  comments: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "video",
+    },
+  ],
 });
 
 const model = mongoose.model("video", videoSchema);

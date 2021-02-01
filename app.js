@@ -10,6 +10,7 @@ import videoRouter from "./routers/videoRouter";
 import globalRouter from "./routers/globalRouter";
 import routes from "./routes";
 import { localMiddleware } from "./middleware";
+
 const app = express();
 //middle-ware
 app.use(helmet({ contentSecurityPolicy: false }));

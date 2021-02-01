@@ -16,9 +16,9 @@ const User_Detail = "/:id";
 const Videos = "/videos";
 const Video_Detail = "/:id";
 const Upload = "/upload";
+const Fail_Upload = "/fail-upload";
 const Edit_Video = "/:id/edit";
 const Delete_Video = "/:id/delete";
-
 const routes = {
   home: Home,
   join: Join,
@@ -36,6 +36,7 @@ const routes = {
   editProfile: Edit_Profile,
   changePassword: Change_Password,
   videos: Videos,
+  failUpload: Fail_Upload,
   upload: Upload,
   videoDetail: (id) => {
     if (id) {

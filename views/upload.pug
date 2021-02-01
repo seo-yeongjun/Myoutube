@@ -2,9 +2,9 @@ extends layouts/main.pug
 
 block content
     .form-container
-        form(action=`/videos${routes.upload}`, method="post")
+        form(action=`/videos${routes.upload}`, method="post", enctype="multipart/form-data")
             label(for="file") Video File
-            input(type="file", id="file", name="file", required=true)
+            input(type="file", id="file", name="videoFile", required=true, accept="video/mp4,video/mkv, video/x-m4v,video/*")
             input(type="text", placeholder="영상 제목", name="title", required=true)
             textarea(name="description", placeholder="영상 설명")
             input(type="submit", value="올리기")

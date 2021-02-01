@@ -1,9 +1,12 @@
 import routes from "../routes.js";
-
-export const home = (req, res) => {
+import video from "../models/video";
+import { multerVideo } from "../middleware";
+export const home = async (req, res) => {
+  const videos = await video.find({});
   res.render("home", { siteTitle: "Home", videos });
 };
-export const search = (req, res) => {
+export const search = async (req, res) => {
+  const videos = await video.find({});
   const {
     query: { term: searchingWhat },
   } = req;
@@ -13,11 +16,20 @@ export const search = (req, res) => {
 export const getUpload = (req, res) =>
   res.render("upload", { siteTitle: "Upload" });
 
-export const postUpload = (req, res) => {
-  const {
-    body: { description, title, file },
-  } = req;
-  res.redirect(routes.videoDetail(1));
+export const failUpload = (req, res) => {
+  res.render("failUpload");
+};
+
+export const uploadVideo = (req, res) => {
+  multerVideo(req, res, function (err) {
+    if (err) {
+      if (err.message == "File too large")
+        return res.redirect(`/videos${routes.failUpload}`);
+      return console.log(err);
+    } else {
+      res.redirect(routes.videoDetail(1));
+    }
+  });
 };
 
 export const videoDetail = (req, res) =>
