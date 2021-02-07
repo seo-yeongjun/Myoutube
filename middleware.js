@@ -2,7 +2,7 @@ import routes from "./routes";
 import multer from "multer";
 
 export const multerVideo = multer({
-  dest: "videos/",
+  dest: "uploads/videos/",
   limits: { fileSize: 500000000 },
 }).single("videoFile");
 

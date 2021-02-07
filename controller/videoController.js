@@ -1,6 +1,7 @@
 import routes from "../routes.js";
 import video from "../models/video";
 import { multerVideo } from "../middleware";
+import mongoose from "mongoose";
 export const home = async (req, res) => {
   const videos = await video.find({});
   res.render("home", { siteTitle: "Home", videos });
@@ -21,13 +22,24 @@ export const failUpload = (req, res) => {
 };
 
 export const uploadVideo = (req, res) => {
-  multerVideo(req, res, function (err) {
+  multerVideo(req, res, async function (err) {
     if (err) {
-      if (err.message == "File too large")
+      if (err.message == "File too large") {
+        console.log(err);
         return res.redirect(`/videos${routes.failUpload}`);
-      return console.log(err);
+      }
     } else {
-      res.redirect(routes.videoDetail(1));
+      const {
+        body: { title, description },
+        file: { path },
+      } = req;
+      const newVideo = await video.create({
+        fileUrl: path,
+        title,
+        description,
+      });
+      console.log(newVideo);
+      res.redirect(routes.videoDetail(newVideo.id));
     }
   });
 };

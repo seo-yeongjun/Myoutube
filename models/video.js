@@ -5,12 +5,19 @@ const videoSchema = new mongoose.Schema({
     type: String,
     required: "File URL is required",
   },
-  name: String,
+  name: {
+    type: String,
+    default: "추가 예정",
+  },
+  avartaImgUrl: {
+    type: String,
+    default: 0,
+  },
   title: {
     type: String,
     requierd: "Title is required",
   },
-  dscription: String,
+  description: String,
   views: {
     type: Number,
     default: 0,
@@ -36,4 +43,5 @@ const videoSchema = new mongoose.Schema({
 });
 
 const model = mongoose.model("video", videoSchema);
+mongoose.model.remove;
 export default model;
